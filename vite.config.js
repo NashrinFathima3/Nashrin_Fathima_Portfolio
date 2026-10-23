@@ -41,6 +41,16 @@ export default defineConfig({
             next();
           }
         });
+      },
+      closeBundle() {
+        const srcDir = path.join(__dirname, 'ezgif');
+        const destDir = path.join(__dirname, 'dist', 'ezgif');
+        if (fs.existsSync(srcDir)) {
+          if (!fs.existsSync(destDir)) {
+            fs.mkdirSync(destDir, { recursive: true });
+          }
+          fs.cpSync(srcDir, destDir, { recursive: true });
+        }
       }
     }
   ]
